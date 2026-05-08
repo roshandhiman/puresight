@@ -29,10 +29,10 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4"
         style={{
           background: scrolled
-            ? 'rgba(2,10,10,0.85)'
+            ? 'rgba(255,255,255,0.8)'
             : 'transparent',
-          backdropFilter: scrolled ? 'blur(24px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none',
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(0,0,0,0.05)' : 'none',
           transition: 'all 0.4s ease',
         }}
       >
@@ -41,9 +41,9 @@ export default function Navbar() {
           <div className="relative w-10 h-10 flex items-center justify-center">
             {/* Using the logo.png from the public directory */}
             <img src="/logo.png" alt="PureSight Logo" className="w-full h-full object-contain relative z-10" />
-            <div className="absolute inset-0 rounded-xl animate-pulse-slow opacity-20" style={{ background: '#3B82F6', filter: 'blur(10px)' }} />
+            <div className="absolute inset-0 rounded-xl animate-pulse-slow opacity-10" style={{ background: '#3B82F6', filter: 'blur(8px)' }} />
           </div>
-          <span className="font-display font-800 text-xl tracking-tight text-white"
+          <span className="font-display font-800 text-xl tracking-tight text-gray-900"
             style={{ fontFamily: 'Manrope, Inter, sans-serif', fontWeight: 800 }}>
             Pure<span className="gradient-text">Sight</span>
           </span>
@@ -70,12 +70,12 @@ export default function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <motion.span className="block w-6 h-0.5 bg-white rounded"
+          <motion.span className="block w-6 h-0.5 bg-gray-900 rounded"
             animate={menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.3 }} />
-          <motion.span className="block w-6 h-0.5 bg-white rounded"
+          <motion.span className="block w-6 h-0.5 bg-gray-900 rounded"
             animate={menuOpen ? { opacity: 0 } : { opacity: 1 }} />
-          <motion.span className="block w-6 h-0.5 bg-white rounded"
+          <motion.span className="block w-6 h-0.5 bg-gray-900 rounded"
             animate={menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.3 }} />
         </button>
@@ -93,7 +93,7 @@ export default function Navbar() {
           >
             {links.map(l => (
               <a key={l.label} href={l.href}
-                className="text-white/80 font-medium py-2 border-b border-white/5"
+                className="text-gray-700 font-medium py-2 border-b border-gray-100"
                 onClick={() => setMenuOpen(false)}>{l.label}</a>
             ))}
             <a href="#cta" className="btn-primary text-center mt-2" onClick={() => setMenuOpen(false)}>

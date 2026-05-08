@@ -13,15 +13,16 @@ module.exports = {
       },
       colors: {
         accent: {
-          400: '#60A5FA', // bright blue
-          500: '#3B82F6', // electric blue
-          600: '#2563EB', // deep blue
+          400: '#60A5FA',
+          500: '#2563EB',
+          600: '#1D4ED8',
           900: '#1E3A8A',
         },
         surface: {
-          900: '#0A0A0B', // true dark
-          800: '#121214', // slightly lighter dark
-          700: '#18181B', // border dark
+          50: '#F9FAFB',
+          100: '#F3F4F6',
+          200: '#E5E7EB',
+          900: '#111827',
         }
       },
       animation: {

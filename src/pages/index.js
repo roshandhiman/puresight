@@ -7,6 +7,7 @@ import FeaturesSection from '@/components/FeaturesSection';
 import DashboardSection from '@/components/DashboardSection';
 import WhoSection from '@/components/WhoSection';
 import StatsSection from '@/components/StatsSection';
+import QuoteSection from '@/components/QuoteSection';
 import CtaSection from '@/components/CtaSection';
 import Footer from '@/components/Footer';
 import ParticleBackground from '@/components/ParticleBackground';
@@ -25,10 +26,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="relative min-h-screen bg-[#020a0a] overflow-hidden">
+      <div className="relative min-h-screen bg-white overflow-hidden selection:bg-blue-100 selection:text-blue-600">
         <ParticleBackground />
         <Navbar />
-        <main>
+        <main className="relative z-10">
           <HeroSection />
           <ProblemSection />
           <SolutionSection />
@@ -36,6 +37,7 @@ export default function Home() {
           <DashboardSection />
           <StatsSection />
           <WhoSection />
+          <QuoteSection />
           <CtaSection />
         </main>
         <Footer />
