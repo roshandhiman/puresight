@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
+import { Droplets, Sun, Activity, Waves, CheckCircle2 } from 'lucide-react';
 
 function MiniChart({ values }) {
   const max = Math.max(...values);
@@ -110,13 +111,15 @@ export default function DashboardSection() {
               {/* KPI row */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {[
-                  { label: 'Quality', val: 'SAFE', color: '#10B981', icon: '💧', sub: 'TDS: 48ppm' },
-                  { label: 'UV Lamp', val: 'Active', color: '#F59E0B', icon: '☀️', sub: '254nm' },
-                  { label: 'Filter', val: `${Math.round(filterPct)}%`, color: '#2563EB', icon: '🔵', sub: 'Healthy' },
-                  { label: 'Flow', val: `${Math.max(1.5, flow).toFixed(1)}L/m`, color: '#0EA5E9', icon: '〰️', sub: 'Normal' },
+                  { label: 'Quality', val: 'SAFE', color: '#10B981', icon: Droplets, sub: 'TDS: 48ppm' },
+                  { label: 'UV Lamp', val: 'Active', color: '#F59E0B', icon: Sun, sub: '254nm' },
+                  { label: 'Filter', val: `${Math.round(filterPct)}%`, color: '#2563EB', icon: Activity, sub: 'Healthy' },
+                  { label: 'Flow', val: `${Math.max(1.5, flow).toFixed(1)}L/m`, color: '#0EA5E9', icon: Waves, sub: 'Normal' },
                 ].map((kpi, i) => (
                   <div key={kpi.label} className="dashboard-widget text-center bg-gray-50/50 border-gray-100">
-                    <div className="text-xl mb-1">{kpi.icon}</div>
+                    <div className="text-xl mb-1 flex justify-center text-gray-400">
+                      <kpi.icon size={20} color={kpi.color} strokeWidth={2.5} />
+                    </div>
                     <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">{kpi.label}</div>
                     <div className="text-lg font-black" style={{ color: kpi.color }}>{kpi.val}</div>
                     <div className="text-[10px] text-gray-400 mt-0.5">{kpi.sub}</div>
@@ -183,8 +186,8 @@ export default function DashboardSection() {
             <div className="flex flex-col gap-6">
               {/* Status Circle */}
               <div className="dashboard-widget flex flex-col items-center justify-center py-8 bg-green-50/30 border-green-100">
-                <div className="w-24 h-24 rounded-full border-4 border-green-500/20 flex items-center justify-center mb-4 bg-white shadow-sm">
-                  <span className="text-4xl">✅</span>
+                <div className="w-24 h-24 rounded-full border-4 border-green-500/20 flex items-center justify-center mb-4 bg-white shadow-sm text-green-500">
+                  <CheckCircle2 size={48} strokeWidth={2.5} />
                 </div>
                 <div className="text-2xl font-black text-green-600 mb-1">SAFE</div>
                 <div className="text-[10px] text-gray-400 font-bold tracking-widest uppercase">Verified Pure</div>

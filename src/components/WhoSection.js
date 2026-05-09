@@ -1,29 +1,30 @@
 'use client';
 import { motion } from 'framer-motion';
+import { GraduationCap, Hospital, Building2, Globe } from 'lucide-react';
 
 const targets = [
   {
     title: 'Universities',
     desc: 'Ensuring thousands of students have access to safe, verified drinking water across campus.',
-    image: '🎓',
+    icon: GraduationCap,
     color: 'blue'
   },
   {
     title: 'Hospitals',
     desc: 'Critical water quality monitoring for patient safety and medical compliance standards.',
-    image: '🏥',
+    icon: Hospital,
     color: 'cyan'
   },
   {
     title: 'Offices',
     desc: 'Boosting employee wellness with transparent, real-time hydration health tracking.',
-    image: '🏢',
+    icon: Building2,
     color: 'indigo'
   },
   {
     title: 'Public Spaces',
     desc: 'Building trust in airports, malls, and stations with digital safety certificates.',
-    image: '🌍',
+    icon: Globe,
     color: 'teal'
   },
 ];
@@ -66,8 +67,10 @@ export default function WhoSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10">
-                <div className="text-5xl mb-8 transform group-hover:scale-125 group-hover:rotate-6 transition-transform duration-500">
-                  {item.image}
+                <div className="mb-8 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-${item.color}-50 text-${item.color}-600 border border-${item.color}-100 shadow-sm group-hover:shadow-md transition-all duration-500`}>
+                    <item.icon size={32} strokeWidth={1.5} />
+                  </div>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">{item.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6 group-hover:text-gray-600 transition-colors">

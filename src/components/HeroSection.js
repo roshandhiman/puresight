@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { Droplets, Sun, Activity, Waves } from 'lucide-react';
 
 function MiniDashCard({ label, value, unit, color, delay }) {
   return (
@@ -170,16 +171,19 @@ export default function HeroSection() {
             {/* Content grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
               {[
-                { label: 'Water Quality', val: 'SAFE', icon: '💧', color: '#2563EB', sub: 'TDS: 48 ppm' },
-                { label: 'UV Lamp', val: 'Active', icon: '☀️', color: '#F59E0B', sub: 'Healthy' },
-                { label: 'Filter Life', val: '87%', icon: '🔵', color: '#3B82F6', sub: '43 days' },
-                { label: 'Flow Rate', val: `${flow}L/m`, icon: '〰️', color: '#10B981', sub: 'Normal' },
+                { label: 'Water Quality', val: 'SAFE', icon: Droplets, color: '#2563EB', sub: 'TDS: 48 ppm' },
+                { label: 'UV Lamp', val: 'Active', icon: Sun, color: '#F59E0B', sub: 'Healthy' },
+                { label: 'Filter Life', val: '87%', icon: Activity, color: '#3B82F6', sub: '43 days' },
+                { label: 'Flow Rate', val: `${flow}L/m`, icon: Waves, color: '#10B981', sub: 'Normal' },
               ].map((item, i) => (
                 <div
                   key={item.label}
                   className="p-4 rounded-xl border border-gray-50 bg-gray-50/30"
                 >
-                  <div className="text-xs text-gray-400 mb-1 uppercase tracking-wider font-bold">{item.label}</div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-xs text-gray-400 uppercase tracking-wider font-bold">{item.label}</div>
+                    <item.icon size={16} color={item.color} strokeWidth={2.5} />
+                  </div>
                   <div className="text-2xl font-black" style={{ color: item.color }}>{item.val}</div>
                   <div className="text-xs text-gray-400 mt-1">{item.sub}</div>
                 </div>

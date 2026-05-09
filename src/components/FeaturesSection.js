@@ -1,45 +1,46 @@
 'use client';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Activity, Droplets, Sun, ClipboardCheck, ShieldCheck, PlugZap } from 'lucide-react';
 
 const features = [
   {
-    icon: '📡',
+    icon: Activity,
     title: 'Real-Time Transparency',
     desc: 'Every metric visible to admins and users, live. No black boxes. Full purifier visibility at a glance.',
     color: '#2563EB',
     delay: 0,
   },
   {
-    icon: '🔵',
+    icon: Droplets,
     title: 'Filter Health Tracking',
     desc: 'Track filter saturation levels with precise differential sensors. Get alerted before failure.',
     color: '#3B82F6',
     delay: 0.08,
   },
   {
-    icon: '☀️',
+    icon: Sun,
     title: 'UV Lamp Monitoring',
     desc: 'Continuous UV intensity measurement ensures effectiveness. Auto-shutoff on lamp degradation.',
     color: '#F59E0B',
     delay: 0.16,
   },
   {
-    icon: '📋',
+    icon: ClipboardCheck,
     title: 'Maintenance Logging',
     desc: 'Immutable timestamped logs of every service event. Audit-ready reports generated automatically.',
     color: '#8B5CF6',
     delay: 0.24,
   },
   {
-    icon: '🛡️',
+    icon: ShieldCheck,
     title: 'Auto Shutoff Protection',
     desc: 'Risk detected? PureSight cuts water flow in under 200ms. Zero contamination reaches the consumer.',
     color: '#EF4444',
     delay: 0.32,
   },
   {
-    icon: '🔌',
+    icon: PlugZap,
     title: 'Universal Compatibility',
     desc: 'Works with 98% of commercial purifiers via a plug-and-monitor IoT collar. No plumbing changes.',
     color: '#10B981',
@@ -48,6 +49,7 @@ const features = [
 ];
 
 function FeatureCard({ feature, inView }) {
+  const Icon = feature.icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -57,13 +59,14 @@ function FeatureCard({ feature, inView }) {
     >
       <div className="relative z-10">
         <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm"
+          className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm"
           style={{
             background: `${feature.color}10`,
             border: `1px solid ${feature.color}20`,
+            color: feature.color
           }}
         >
-          {feature.icon}
+          <Icon size={24} strokeWidth={2} />
         </div>
         <h3 className="text-xl font-bold text-gray-900 mb-3"
           style={{ fontFamily: 'Manrope,sans-serif' }}>

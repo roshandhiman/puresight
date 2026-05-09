@@ -1,23 +1,36 @@
 'use client';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { 
+  AlertTriangle, 
+  Biohazard, 
+  Ban, 
+  BellOff, 
+  CheckCircle2, 
+  ShieldCheck, 
+  Radio, 
+  FileText,
+  X,
+  Check
+} from 'lucide-react';
 
 const problems = [
-  { icon: '⚠️', label: 'Unknown condition', desc: 'No way to know if the filter is clogged' },
-  { icon: '☣️', label: 'Unsafe water', desc: 'Contaminated water served without warning' },
-  { icon: '🚫', label: 'Zero transparency', desc: 'Institutions have no visibility into health' },
-  { icon: '🔕', label: 'No monitoring', desc: 'Failures go undetected for weeks' },
+  { icon: AlertTriangle, label: 'Unknown condition', desc: 'No way to know if the filter is clogged', color: '#EF4444' },
+  { icon: Biohazard, label: 'Unsafe water', desc: 'Contaminated water served without warning', color: '#EF4444' },
+  { icon: Ban, label: 'Zero transparency', desc: 'Institutions have no visibility into health', color: '#EF4444' },
+  { icon: BellOff, label: 'No monitoring', desc: 'Failures go undetected for weeks', color: '#EF4444' },
 ];
 
 const solutions = [
-  { icon: '✅', label: 'Live status', desc: 'Real-time data visible from every unit' },
-  { icon: '🛡️', label: 'Verified safe', desc: 'Digital quality certificates for every cup' },
-  { icon: '📡', label: 'IoT monitoring', desc: 'Sensors stream data 24/7' },
-  { icon: '📋', label: 'Accountability', desc: 'Immutable logs and automated alerts' },
+  { icon: CheckCircle2, label: 'Live status', desc: 'Real-time data visible from every unit', color: '#2563EB' },
+  { icon: ShieldCheck, label: 'Verified safe', desc: 'Digital quality certificates for every cup', color: '#2563EB' },
+  { icon: Radio, label: 'IoT monitoring', desc: 'Sensors stream data 24/7', color: '#2563EB' },
+  { icon: FileText, label: 'Accountability', desc: 'Immutable logs and automated alerts', color: '#2563EB' },
 ];
 
 function ProblemCard({ item, index, side }) {
   const isDanger = side === 'left';
+  const Icon = item.icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -29,9 +42,12 @@ function ProblemCard({ item, index, side }) {
         border: `1px solid ${isDanger ? 'rgba(239, 68, 68, 0.08)' : 'rgba(37, 99, 235, 0.08)'}`,
       }}
     >
-      <div className="text-xl flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg"
-        style={{ background: isDanger ? 'rgba(239, 68, 68, 0.08)' : 'rgba(37, 99, 235, 0.08)' }}>
-        {item.icon}
+      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg"
+        style={{ 
+          background: isDanger ? 'rgba(239, 68, 68, 0.08)' : 'rgba(37, 99, 235, 0.08)',
+          color: isDanger ? '#EF4444' : '#2563EB'
+        }}>
+        <Icon size={20} strokeWidth={2} />
       </div>
       <div>
         <div className="font-bold text-gray-900 text-sm mb-0.5">{item.label}</div>
@@ -85,9 +101,9 @@ export default function ProblemSection() {
                   <ProblemCard key={i} item={p} index={i} side="left" />
                 ))}
               </div>
-              <div className="mt-8 p-4 rounded-2xl bg-red-50 border border-red-100 flex items-center gap-3">
-                <span className="text-lg">❌</span>
-                <span className="text-sm text-red-600 font-bold tracking-tight">Condition: UNKNOWN — High Risk Detected</span>
+              <div className="mt-8 p-4 rounded-2xl bg-red-50 border border-red-100 flex items-center gap-3 text-red-600">
+                <X size={20} strokeWidth={3} />
+                <span className="text-sm font-bold tracking-tight">Condition: UNKNOWN — High Risk Detected</span>
               </div>
             </div>
           </div>
@@ -104,9 +120,9 @@ export default function ProblemSection() {
                   <ProblemCard key={i} item={s} index={i} side="right" />
                 ))}
               </div>
-              <div className="mt-8 p-4 rounded-2xl bg-green-50 border border-green-100 flex items-center gap-3">
-                <span className="text-lg">✅</span>
-                <span className="text-sm text-green-700 font-bold tracking-tight">Condition: VERIFIED SAFE — 24/7 Monitoring</span>
+              <div className="mt-8 p-4 rounded-2xl bg-green-50 border border-green-100 flex items-center gap-3 text-green-700">
+                <Check size={20} strokeWidth={3} />
+                <span className="text-sm font-bold tracking-tight">Condition: VERIFIED SAFE — 24/7 Monitoring</span>
               </div>
             </div>
           </div>
