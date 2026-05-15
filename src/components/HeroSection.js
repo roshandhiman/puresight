@@ -63,25 +63,6 @@ export default function HeroSection() {
       className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-16 px-4 overflow-hidden"
       style={{ zIndex: 2 }}
     >
-      {/* Refined glows for light mode */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px]"
-          style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.03) 0%, transparent 70%)' }} />
-      </div>
-
-      {/* Dynamic Background Blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div 
-          animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-24 -left-24 w-[400px] h-[400px] bg-blue-100/40 rounded-full blur-[100px]" 
-        />
-        <motion.div 
-          animate={{ x: [0, -40, 0], y: [0, 60, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-          className="absolute top-1/2 -right-24 w-[300px] h-[300px] bg-cyan-100/30 rounded-full blur-[80px]" 
-        />
-      </div>
 
       {/* Badge */}
       <motion.div

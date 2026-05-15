@@ -156,190 +156,156 @@ export default function DashboardPage() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
-          {/* Main Metrics Column - Scrolls */}
-          <div className="lg:col-span-8 space-y-8">
-            {/* Primary Metrics Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              
-              {/* TDS Card */}
-              <MetricCard 
-                icon={<Activity className="w-5 h-5" />}
-                label="Total Dissolved Solids"
-                value={`${data.TDS.toFixed(1)}`}
-                unit="ppm"
-                description="Indicates the concentration of dissolved substances."
-                color="blue"
-              />
-
-              {/* Turbidity Card */}
-              <MetricCard 
-                icon={<Waves className="w-5 h-5" />}
-                label="Turbidity"
-                value={`${data.Turbidity.toFixed(1)}`}
-                unit="NTU"
-                description="Measures water clarity and suspended particles."
-                color="indigo"
-              />
-
-              {/* Total Litres */}
-              <MetricCard 
-                icon={<Droplets className="w-5 h-5" />}
-                label="Total Water Dispensed"
-                value={`${data.TotalLitres.toFixed(1)}`}
-                unit="Litres"
-                description="Cumulative volume of water purified today."
-                color="sky"
-              />
-
-              {/* Temperature */}
-              <MetricCard 
-                icon={<Thermometer className="w-5 h-5" />}
-                label="Water Temperature"
-                value={`${data.Temperature.toFixed(1)}`}
-                unit="°C"
-                description="Current temperature of the output water."
-                color="orange"
-              />
-            </div>
-
-            {/* Secondary Stats */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
-              <div className="flex items-center justify-between mb-8">
-                <h4 className="text-lg font-bold">System Health Metrics</h4>
-                <div className="text-xs text-slate-400 font-mono uppercase tracking-widest font-bold">Real-time Diagnostics</div>
+          {/* Top Row: Grid (Left) and Status (Right) */}
+          <div className="lg:col-span-8">
+            <div className="relative bg-white border border-slate-200 rounded-[1.5rem] overflow-hidden shadow-sm h-[400px] flex items-center justify-center">
+              {/* Animated Separator Lines */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <motion.div 
+                  initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 1.5, ease: "circOut" }}
+                  className="h-px bg-slate-100 w-full relative z-10"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent animate-pulse" />
+                </motion.div>
+                <motion.div 
+                  initial={{ height: 0 }} animate={{ height: '100%' }} transition={{ duration: 1.5, ease: "circOut", delay: 0.3 }}
+                  className="w-px bg-slate-100 h-full absolute flex items-center justify-center z-10"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/20 to-transparent animate-pulse" />
+                  <div className="w-5 h-5 rounded-full bg-white border border-slate-100 flex items-center justify-center shadow-sm z-20">
+                    <div className="w-1 h-1 rounded-full bg-blue-500 animate-ping" />
+                  </div>
+                </motion.div>
               </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {/* UV Lamp Status */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-purple-50 text-purple-600 rounded-lg">
-                        <Sun className="w-5 h-5" />
-                      </div>
-                      <span className="font-bold text-slate-700">UV Sterilization</span>
-                    </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-black uppercase ${
-                      data.UV === "ON" ? 'bg-purple-100 text-purple-700' : 'bg-slate-100 text-slate-400'
-                    }`}>
-                      {data.UV}
-                    </span>
-                  </div>
-                  <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <motion.div 
-                      className="h-full bg-purple-500 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: data.UV === "ON" ? '100%' : '0%' }}
-                    />
-                  </div>
-                  <p className="text-xs text-slate-400">UV lamp active for continuous pathogen elimination.</p>
-                </div>
 
-                {/* Flow Rate */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
-                        <Zap className="w-5 h-5" />
-                      </div>
-                      <span className="font-bold text-slate-700">Current Flow Rate</span>
-                    </div>
-                    <span className="text-sm font-black text-blue-600">
-                      {data.FlowRate.toFixed(1)} L/m
-                    </span>
+              <div className="grid grid-cols-2 w-full h-full">
+                {/* TDS */}
+                <div className="p-6 flex flex-col items-center justify-center text-center">
+                  <div className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+                    <Activity className="w-3 h-3 text-blue-500" /> TDS Level
                   </div>
-                  <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <motion.div 
-                      className="h-full bg-blue-500 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: '45%' }} // Mock visualization
-                    />
+                  <div className="flex items-baseline gap-1.5 mb-1">
+                    <span className="text-4xl font-black text-slate-900 tracking-tight">{data.TDS.toFixed(1)}</span>
+                    <span className="text-xs font-bold text-blue-500">ppm</span>
                   </div>
-                  <p className="text-xs text-slate-400">Stable flow detected across all filtration stages.</p>
+                  <p className="text-[8px] font-bold text-slate-300 uppercase tracking-tight">Total Dissolved Solids</p>
+                </div>
+                {/* Turbidity */}
+                <div className="p-6 flex flex-col items-center justify-center text-center">
+                  <div className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+                    <Waves className="w-3 h-3 text-indigo-500" /> Turbidity
+                  </div>
+                  <div className="flex items-baseline gap-1.5 mb-1">
+                    <span className="text-4xl font-black text-slate-900 tracking-tight">{data.Turbidity.toFixed(1)}</span>
+                    <span className="text-xs font-bold text-indigo-500">NTU</span>
+                  </div>
+                  <p className="text-[8px] font-bold text-slate-300 uppercase tracking-tight">Water Clarity Index</p>
+                </div>
+                {/* Discharge */}
+                <div className="p-6 flex flex-col items-center justify-center text-center">
+                  <div className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+                    <Droplets className="w-3 h-3 text-sky-500" /> Discharge
+                  </div>
+                  <div className="flex items-baseline gap-1.5 mb-1">
+                    <span className="text-4xl font-black text-slate-900 tracking-tight">{data.TotalLitres.toFixed(1)}</span>
+                    <span className="text-xs font-bold text-sky-500">Litres</span>
+                  </div>
+                  <p className="text-[8px] font-bold text-slate-300 uppercase tracking-tight">Total Volume Output</p>
+                </div>
+                {/* Thermal */}
+                <div className="p-6 flex flex-col items-center justify-center text-center">
+                  <div className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+                    <Thermometer className="w-3 h-3 text-orange-500" /> Thermal
+                  </div>
+                  <div className="flex items-baseline gap-1.5 mb-1">
+                    <span className="text-4xl font-black text-slate-900 tracking-tight">{data.Temperature.toFixed(1)}</span>
+                    <span className="text-xs font-bold text-orange-500">°C</span>
+                  </div>
+                  <p className="text-[8px] font-bold text-slate-300 uppercase tracking-tight">Real-time Temp</p>
                 </div>
               </div>
             </div>
-
           </div>
 
-          {/* Sticky Side Column */}
-          <div className="lg:col-span-4 lg:sticky lg:top-24 lg:self-start space-y-6">
-            
-            {/* Safety Status (Moved from main column) */}
+          <div className="lg:col-span-4">
             <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className={`p-6 rounded-3xl border flex flex-col gap-4 shadow-sm ${
-                isSafe 
-                ? 'bg-emerald-50 border-emerald-100' 
-                : 'bg-amber-50 border-amber-100'
+              initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
+              className={`p-8 rounded-[1.5rem] border-2 flex flex-col justify-center h-[400px] shadow-lg transition-all duration-700 relative overflow-hidden ${
+                isSafe ? 'bg-emerald-50 border-emerald-100' : 'bg-amber-50 border-amber-100'
               }`}
             >
-              <div className="flex items-center justify-between">
-                <div className={`p-3 rounded-2xl ${isSafe ? 'bg-white text-emerald-500' : 'bg-white text-amber-500'} shadow-sm`}>
-                  <ShieldCheck className="w-6 h-6" />
+              <div className="flex items-center justify-between mb-6">
+                <div className={`p-3.5 rounded-xl ${isSafe ? 'bg-white text-emerald-500' : 'bg-white text-amber-500'} shadow-sm`}>
+                  <ShieldCheck className="w-7 h-7" />
                 </div>
                 <div className="text-right">
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Quality Grade</div>
-                  <div className={`text-2xl font-black ${isSafe ? 'text-emerald-600' : 'text-amber-600'}`}>{data.Quality}</div>
+                  <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Quality</div>
+                  <div className={`text-5xl font-black ${isSafe ? 'text-emerald-600' : 'text-amber-600'}`}>{data.Quality}</div>
                 </div>
               </div>
-              <div>
-                <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Current Status</div>
-                <h3 className={`text-xl font-black mb-1 ${isSafe ? 'text-emerald-900' : 'text-amber-900'}`}>{isSafe ? 'Safe to Drink' : 'Maintenance Required'}</h3>
-                <p className={`text-xs ${isSafe ? 'text-emerald-700/70' : 'text-amber-700/70'} leading-relaxed`}>
-                  {isSafe 
-                    ? 'Water quality meets all safety standards.' 
-                    : 'System requires inspection.'}
-                </p>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/60 rounded-full mb-5 border border-white/40 w-fit">
+                <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${isSafe ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest">Live Status</span>
               </div>
+              <h3 className={`text-3xl font-black mb-3 tracking-tight ${isSafe ? 'text-emerald-950' : 'text-amber-950'}`}>
+                {isSafe ? 'Water is Safe.' : 'System Check.'}
+              </h3>
+              <p className={`text-xs font-medium leading-relaxed ${isSafe ? 'text-emerald-800/60' : 'text-amber-800/60'}`}>
+                {isSafe ? 'Parameters optimal. Meets safety standards.' : 'Sensor deviation detected. Inspection advised.'}
+              </p>
             </motion.div>
+          </div>
 
-            {/* Quick Actions */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
-              <h4 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-widest">Actions</h4>
-              <div className="space-y-3">
-                <button className="w-full py-3 bg-slate-50 hover:bg-slate-100 rounded-xl text-slate-700 font-bold text-xs transition-colors flex items-center justify-center gap-2 border border-slate-100">
-                  <RotateCcw className="w-3 h-3" />
-                  Recalibrate
-                </button>
-                <button className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-bold text-xs transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2">
-                  Daily Report
-                </button>
+          {/* Bottom Row: Health (Left) and Intelligence (Right) */}
+          <div className="lg:col-span-8">
+            <div className="bg-white/50 backdrop-blur-sm rounded-[1.5rem] border border-slate-200 p-8 h-[180px] flex flex-col justify-center shadow-sm">
+              <div className="flex items-center justify-between mb-6">
+                <h4 className="text-lg font-black text-slate-900">Health Diagnostics</h4>
+                <div className="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[8px] font-black uppercase tracking-widest border border-emerald-100 flex items-center gap-2">
+                  <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" /> Live
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-12">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="p-2.5 bg-purple-50 text-purple-600 rounded-lg border border-purple-100"><Sun className="w-4 h-4" /></div>
+                      <div className="text-[10px] font-black text-slate-900 uppercase">UV Status</div>
+                    </div>
+                    <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${data.UV === "ON" ? 'bg-purple-600 text-white' : 'bg-slate-100 text-slate-400'}`}>{data.UV}</span>
+                  </div>
+                  <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden"><motion.div className="h-full bg-purple-500" initial={{ width: 0 }} animate={{ width: data.UV === "ON" ? '100%' : '0%' }} /></div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="p-2.5 bg-blue-50 text-blue-600 rounded-lg border border-blue-100"><Zap className="w-4 h-4" /></div>
+                      <div className="text-[10px] font-black text-slate-900 uppercase">Flow Rate</div>
+                    </div>
+                    <div className="text-right font-black text-blue-600 text-lg">{data.FlowRate.toFixed(1)} <span className="text-[9px] text-slate-400 ml-1">L/m</span></div>
+                  </div>
+                  <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden"><motion.div className="h-full bg-blue-500" initial={{ width: 0 }} animate={{ width: '65%' }} /></div>
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Device Info (Moved to bottom of sidebar) */}
-            <div className="bg-slate-900 rounded-3xl p-6 text-white shadow-xl shadow-blue-900/10">
-              <h4 className="text-base font-bold mb-5 flex items-center gap-2 text-blue-400">
-                <Info className="w-4 h-4" />
-                Intelligence
-              </h4>
-              
-              <div className="space-y-4">
+          <div className="lg:col-span-4">
+            <div className="bg-slate-950 rounded-[1.5rem] p-8 text-white h-[180px] flex flex-col justify-center shadow-lg relative overflow-hidden">
+              <h4 className="text-lg font-black mb-4 flex items-center gap-3 relative z-10"><Info className="w-5 h-5 text-blue-500" /> Intelligence</h4>
+              <div className="space-y-3 relative z-10">
                 <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                  <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">Device ID</span>
-                  <span className="font-mono text-xs">PS-COOLER-001</span>
+                  <span className="text-white/30 text-[9px] font-black uppercase tracking-widest">Device</span>
+                  <span className="font-mono text-xs font-bold">PS-ALPH-01</span>
                 </div>
-                <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                  <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">Location</span>
-                  <span className="text-xs">Main Hall</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-white/30 text-[9px] font-black uppercase tracking-widest">Score</span>
+                  <span className="text-xs font-black text-blue-500 tracking-tight">99.8% Optimal</span>
                 </div>
-                <div className="flex items-center justify-between pb-1">
-                  <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">Firmware</span>
-                  <span className="text-xs">v2.4.1</span>
-                </div>
-              </div>
-
-              <div className="mt-6 p-3 bg-white/5 rounded-xl border border-white/10">
-                <p className="text-[10px] text-white/40 leading-relaxed">
-                  WQI calibration active. Sensor data live.
-                </p>
               </div>
             </div>
-
           </div>
         </div>
       </main>
@@ -372,34 +338,3 @@ export default function DashboardPage() {
   );
 }
 
-function MetricCard({ icon, label, value, unit, description, color }) {
-  const colors = {
-    blue: 'bg-blue-50 text-blue-600 border-blue-100',
-    indigo: 'bg-indigo-50 text-indigo-600 border-indigo-100',
-    sky: 'bg-sky-50 text-sky-600 border-sky-100',
-    orange: 'bg-orange-50 text-orange-600 border-orange-100',
-  };
-
-  return (
-    <motion.div 
-      whileHover={{ y: -4 }}
-      className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm transition-all hover:shadow-md group"
-    >
-      <div className="flex items-center justify-between mb-6">
-        <div className={`p-3 rounded-2xl ${colors[color]} transition-colors`}>
-          {icon}
-        </div>
-        <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400 uppercase tracking-widest">
-          <Activity className="w-3 h-3" />
-          Live
-        </div>
-      </div>
-      <div className="flex items-baseline gap-2 mb-1">
-        <span className="text-4xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">{value}</span>
-        <span className="text-lg font-bold text-slate-400">{unit}</span>
-      </div>
-      <div className="text-sm font-bold text-slate-700 mb-2">{label}</div>
-      <p className="text-xs text-slate-400 leading-relaxed">{description}</p>
-    </motion.div>
-  );
-}

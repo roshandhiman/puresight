@@ -1,6 +1,8 @@
 import '@/styles/globals.css';
 import { useEffect } from 'react';
 import Head from 'next/head';
+import AmbientBackground from '@/components/AmbientBackground';
+import Preloader from '@/components/Preloader';
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -47,6 +49,8 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
+      <Preloader />
+      <AmbientBackground />
       <Component {...pageProps} />
     </>
   );

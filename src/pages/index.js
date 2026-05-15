@@ -25,8 +25,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="relative min-h-screen bg-white overflow-hidden selection:bg-blue-100 selection:text-blue-600">
-        <ParticleBackground />
+      <div className="relative min-h-screen bg-transparent overflow-hidden selection:bg-blue-100 selection:text-blue-600">
         <Navbar />
         <main className="relative z-10">
           <HeroSection />
