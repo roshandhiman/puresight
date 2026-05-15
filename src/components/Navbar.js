@@ -38,12 +38,10 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="relative w-10 h-10 flex items-center justify-center">
-            {/* Using the logo.png from the public directory */}
-            <img src="/logo.png" alt="PureSight Logo" className="w-full h-full object-contain relative z-10" />
-            <div className="absolute inset-0 rounded-xl animate-pulse-slow opacity-10" style={{ background: '#3B82F6', filter: 'blur(8px)' }} />
+          <div className="relative w-20 h-20 logo-container">
+            <img src="/logo.png" alt="PureSight Logo" className="w-16 h-16 object-contain relative z-10" />
           </div>
-          <span className="font-display font-800 text-xl tracking-tight text-gray-900"
+          <span className="font-display font-800 text-3xl tracking-tight text-gray-900"
             style={{ fontFamily: 'Manrope, Inter, sans-serif', fontWeight: 800 }}>
             Pure<span className="gradient-text">Sight</span>
           </span>

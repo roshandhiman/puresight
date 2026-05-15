@@ -94,11 +94,11 @@ export default function DashboardPage() {
             <Link href="/" className="p-2 hover:bg-slate-100 rounded-full transition-colors group">
               <ArrowLeft className="w-5 h-5 text-slate-500 group-hover:text-blue-600" />
             </Link>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-                <Droplets className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-3">
+              <div className="relative w-16 h-16 logo-container">
+                <img src="/logo.png" alt="PureSight Logo" className="w-14 h-14 object-contain relative z-10" />
               </div>
-              <h1 className="text-xl font-bold tracking-tight">Pure<span className="text-blue-600">Sight</span></h1>
+              <h1 className="text-3xl font-bold tracking-tight">Pure<span className="text-blue-600">Sight</span></h1>
             </div>
             <div className="hidden md:flex h-6 w-px bg-slate-200 mx-2" />
             <div className="hidden md:flex items-center gap-2 text-sm font-medium text-slate-500">
