@@ -32,41 +32,53 @@ const MOCK_DATA = {
 
 export default function DashboardPage() {
   const [data, setData] = useState(MOCK_DATA);
-  const [loading, setLoading] = useState(false); // Set to true if fetching
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(new Date());
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
+    
     const fetchData = async () => {
-      // Space for API fetching:
-      // try {
-      //   const response = await fetch('YOUR_FIREBASE_URL/Water.json');
-      //   const result = await response.json();
-      //   setData(result);
-      //   setLastUpdated(new Date());
-      // } catch (error) {
-      //   console.error("Error fetching data:", error);
-      // }
-      
-      // For now, let's just simulate some small changes
-      const interval = setInterval(() => {
-        setData(prev => ({
-          ...prev,
-          Current: prev.Current + (Math.random() - 0.5) * 0.01,
-          Temperature: prev.Temperature + (Math.random() - 0.5) * 0.1,
-          TotalLitres: prev.TotalLitres + Math.random() * 0.01,
-        }));
-        setLastUpdated(new Date());
-      }, 5000);
-
-      return () => clearInterval(interval);
+      try {
+        const url = process.env.NEXT_PUBLIC_FIREBASE_DB_URL;
+        const response = await fetch(url);
+        
+        if (!response.ok) throw new Error('Failed to fetch system data');
+        
+        const result = await response.json();
+        
+        if (result) {
+          // Efficiency check: Only update state if data has actually changed
+          // to prevent unnecessary re-renders and reduce load.
+          setData(prev => {
+            if (JSON.stringify(prev) !== JSON.stringify(result)) {
+              setLastUpdated(new Date());
+              return result;
+            }
+            return prev;
+          });
+        }
+        setError(null);
+      } catch (err) {
+        console.error("Dashboard Sync Error:", err);
+        setError("Syncing...");
+      } finally {
+        setLoading(false);
+      }
     };
 
+    // Initial fetch
     fetchData();
+
+    // Live polling every 5 seconds (Optimized for performance vs real-time balance)
+    const interval = setInterval(fetchData, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
-  const isSafe = data.Quality === "GOOD";
+  const isSafe = data?.Quality === "GOOD";
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-600">
@@ -90,8 +102,8 @@ export default function DashboardPage() {
             </div>
             <div className="hidden md:flex h-6 w-px bg-slate-200 mx-2" />
             <div className="hidden md:flex items-center gap-2 text-sm font-medium text-slate-500">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Live System Status
+              <span className={`w-2 h-2 rounded-full animate-pulse ${error ? 'bg-amber-500' : 'bg-green-500'}`} />
+              {error ? error : 'Live System Status'}
             </div>
           </div>
           
@@ -146,47 +158,8 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Main Status Column */}
+          {/* Main Metrics Column - Scrolls */}
           <div className="lg:col-span-8 space-y-8">
-            
-            {/* Safety Banner */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`p-8 rounded-3xl border flex flex-col md:flex-row items-center justify-between gap-6 ${
-                isSafe 
-                ? 'bg-emerald-50 border-emerald-100 text-emerald-900' 
-                : 'bg-amber-50 border-amber-100 text-amber-900'
-              }`}
-            >
-              <div className="flex items-center gap-6">
-                <div className={`w-20 h-20 rounded-full flex items-center justify-center shrink-0 shadow-lg ${
-                  isSafe ? 'bg-white text-emerald-500' : 'bg-white text-amber-500'
-                }`}>
-                  <ShieldCheck className="w-10 h-10" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className={`text-xs font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${
-                      isSafe ? 'bg-emerald-200/50' : 'bg-amber-200/50'
-                    }`}>
-                      Current Status
-                    </span>
-                  </div>
-                  <h3 className="text-4xl font-black mb-1">{isSafe ? 'Safe to Drink' : 'Maintenance Required'}</h3>
-                  <p className={`${isSafe ? 'text-emerald-700/80' : 'text-amber-700/80'} font-medium`}>
-                    {isSafe 
-                      ? 'Water quality meets all safety standards for consumption.' 
-                      : 'System indicates parameters may be outside optimal range.'}
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col items-center md:items-end gap-1">
-                <div className="text-sm font-bold opacity-60 uppercase tracking-wider">Quality Grade</div>
-                <div className="text-5xl font-black">{data.Quality}</div>
-              </div>
-            </motion.div>
-
             {/* Primary Metrics Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
@@ -291,66 +264,79 @@ export default function DashboardPage() {
 
           </div>
 
-          {/* Side Info Column */}
-          <div className="lg:col-span-4 space-y-8">
+          {/* Sticky Side Column */}
+          <div className="lg:col-span-4 lg:sticky lg:top-24 lg:self-start space-y-6">
             
-            {/* Device Info */}
-            <div className="bg-slate-900 rounded-3xl p-8 text-white shadow-xl shadow-blue-900/10">
-              <h4 className="text-xl font-bold mb-6 flex items-center gap-3">
-                <Info className="w-5 h-5 text-blue-400" />
-                Device Intelligence
-              </h4>
-              
-              <div className="space-y-6">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <span className="text-white/60 text-sm font-medium">Device ID</span>
-                  <span className="font-mono text-sm">PS-COOLER-001</span>
+            {/* Safety Status (Moved from main column) */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className={`p-6 rounded-3xl border flex flex-col gap-4 shadow-sm ${
+                isSafe 
+                ? 'bg-emerald-50 border-emerald-100' 
+                : 'bg-amber-50 border-amber-100'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className={`p-3 rounded-2xl ${isSafe ? 'bg-white text-emerald-500' : 'bg-white text-amber-500'} shadow-sm`}>
+                  <ShieldCheck className="w-6 h-6" />
                 </div>
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <span className="text-white/60 text-sm font-medium">Location</span>
-                  <span className="text-sm">Main Campus Hall</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <span className="text-white/60 text-sm font-medium">Active Since</span>
-                  <span className="text-sm">Jan 12, 2024</span>
-                </div>
-                <div className="flex items-center justify-between pb-2">
-                  <span className="text-white/60 text-sm font-medium">Firmware</span>
-                  <span className="text-sm">v2.4.1 (Stable)</span>
+                <div className="text-right">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Quality Grade</div>
+                  <div className={`text-2xl font-black ${isSafe ? 'text-emerald-600' : 'text-amber-600'}`}>{data.Quality}</div>
                 </div>
               </div>
-
-              <div className="mt-8 p-4 bg-white/5 rounded-2xl border border-white/10">
-                <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Technical Note</div>
-                <p className="text-xs text-white/50 leading-relaxed">
-                  Water Quality Index (WQI) is currently under calibration for this device. Live sensor data remains active.
+              <div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Current Status</div>
+                <h3 className={`text-xl font-black mb-1 ${isSafe ? 'text-emerald-900' : 'text-amber-900'}`}>{isSafe ? 'Safe to Drink' : 'Maintenance Required'}</h3>
+                <p className={`text-xs ${isSafe ? 'text-emerald-700/70' : 'text-amber-700/70'} leading-relaxed`}>
+                  {isSafe 
+                    ? 'Water quality meets all safety standards.' 
+                    : 'System requires inspection.'}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Quick Actions */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
-              <h4 className="text-lg font-bold mb-6">Actions</h4>
+            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+              <h4 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-widest">Actions</h4>
               <div className="space-y-3">
-                <button className="w-full py-4 bg-slate-50 hover:bg-slate-100 rounded-2xl text-slate-700 font-bold text-sm transition-colors flex items-center justify-center gap-3 border border-slate-100">
-                  <RotateCcw className="w-4 h-4" />
-                  Recalibrate Sensors
+                <button className="w-full py-3 bg-slate-50 hover:bg-slate-100 rounded-xl text-slate-700 font-bold text-xs transition-colors flex items-center justify-center gap-2 border border-slate-100">
+                  <RotateCcw className="w-3 h-3" />
+                  Recalibrate
                 </button>
-                <button className="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl text-white font-bold text-sm transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-3">
-                  Download Daily Report
+                <button className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-bold text-xs transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2">
+                  Daily Report
                 </button>
               </div>
             </div>
 
-            {/* Live Logs */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm h-[300px] flex flex-col">
-              <h4 className="text-lg font-bold mb-4">Activity Log</h4>
-              <div className="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
-                <LogItem time="Just now" text="UV Intensity stabilized at 98%" type="success" />
-                <LogItem time="2m ago" text="Temperature shift detected: +0.2°C" type="info" />
-                <LogItem time="15m ago" text="Filter efficiency check completed" type="success" />
-                <LogItem time="1h ago" text="System auto-diagnosis: All systems green" type="success" />
-                <LogItem time="3h ago" text="Periodic sensor recalibration done" type="info" />
+            {/* Device Info (Moved to bottom of sidebar) */}
+            <div className="bg-slate-900 rounded-3xl p-6 text-white shadow-xl shadow-blue-900/10">
+              <h4 className="text-base font-bold mb-5 flex items-center gap-2 text-blue-400">
+                <Info className="w-4 h-4" />
+                Intelligence
+              </h4>
+              
+              <div className="space-y-4">
+                <div className="flex items-center justify-between border-b border-white/5 pb-3">
+                  <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">Device ID</span>
+                  <span className="font-mono text-xs">PS-COOLER-001</span>
+                </div>
+                <div className="flex items-center justify-between border-b border-white/5 pb-3">
+                  <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">Location</span>
+                  <span className="text-xs">Main Hall</span>
+                </div>
+                <div className="flex items-center justify-between pb-1">
+                  <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">Firmware</span>
+                  <span className="text-xs">v2.4.1</span>
+                </div>
+              </div>
+
+              <div className="mt-6 p-3 bg-white/5 rounded-xl border border-white/10">
+                <p className="text-[10px] text-white/40 leading-relaxed">
+                  WQI calibration active. Sensor data live.
+                </p>
               </div>
             </div>
 
@@ -415,23 +401,5 @@ function MetricCard({ icon, label, value, unit, description, color }) {
       <div className="text-sm font-bold text-slate-700 mb-2">{label}</div>
       <p className="text-xs text-slate-400 leading-relaxed">{description}</p>
     </motion.div>
-  );
-}
-
-function LogItem({ time, text, type }) {
-  const dots = {
-    success: 'bg-emerald-500',
-    info: 'bg-blue-500',
-    warning: 'bg-amber-500',
-  };
-
-  return (
-    <div className="flex items-start gap-3 group">
-      <div className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${dots[type]}`} />
-      <div>
-        <div className="text-sm text-slate-700 font-medium group-hover:text-slate-900 transition-colors">{text}</div>
-        <div className="text-[10px] text-slate-400 font-bold uppercase mt-0.5">{time}</div>
-      </div>
-    </div>
   );
 }
