@@ -1,7 +1,8 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Droplets, Sun, Activity, Waves } from 'lucide-react';
+import { Droplets, Sun, Activity, Waves, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 function MiniDashCard({ label, value, unit, color, delay }) {
   return (
@@ -130,29 +131,31 @@ export default function HeroSection() {
         transition={{ delay: 0.65, duration: 0.7 }}
         className="flex flex-wrap items-center justify-center gap-4 mb-20"
       >
-        <a href="#cta" className="btn-primary px-8 py-3.5">
-          Request Demo
-        </a>
+        <Link href="/dashboard" className="btn-primary px-8 py-3.5 group">
+          View Live Dashboard
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </Link>
         <a href="#solution" className="btn-ghost px-8 py-3.5">
           Learn More
         </a>
       </motion.div>
 
       {/* Floating Dashboard Mockup */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.75, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        style={{ perspective: 1200 }}
-        className="w-full max-w-5xl"
-      >
+      <Link href="/dashboard" className="w-full max-w-5xl block cursor-pointer group/mockup">
         <motion.div
-          style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-          className="relative"
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.75, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          style={{ perspective: 1200 }}
+          className="w-full"
         >
-          {/* Main dashboard card */}
-          <div className="bg-white rounded-3xl p-6 md:p-8 relative overflow-hidden border border-gray-100"
-            style={{ boxShadow: '0 40px 100px rgba(0,0,0,0.08), 0 0 1px rgba(0,0,0,0.1)' }}>
+          <motion.div
+            style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+            className="relative"
+          >
+            {/* Main dashboard card */}
+            <div className="bg-white rounded-3xl p-6 md:p-8 relative overflow-hidden border border-gray-100 group-hover/mockup:border-blue-200 transition-colors"
+              style={{ boxShadow: '0 40px 100px rgba(0,0,0,0.08), 0 0 1px rgba(0,0,0,0.1)' }}>
             
             {/* Top bar */}
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-50">
@@ -233,8 +236,9 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
       </motion.div>
+    </Link>
 
-      {/* Scroll indicator */}
+    {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

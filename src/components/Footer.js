@@ -1,5 +1,5 @@
-'use client';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -11,12 +11,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-24">
           {/* Brand Info */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-3 mb-8 group">
+            <Link href="/" className="flex items-center gap-3 mb-8 group">
               <div className="relative w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <img src="/logo.png" alt="PureSight Logo" className="w-6 h-6 object-contain" />
               </div>
               <span className="font-black text-2xl text-white tracking-tight">PureSight</span>
-            </a>
+            </Link>
             <p className="text-gray-400 text-lg leading-relaxed max-w-sm mb-8 font-medium">
               Revolutionizing water safety with IoT intelligence. Making the invisible, visible.
             </p>
@@ -33,11 +33,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-black text-xs uppercase tracking-[0.2em] mb-8">Solution</h4>
             <ul className="space-y-4">
-              {['Features', 'Dashboard', 'Hardware', 'Case Studies'].map(item => (
-                <li key={item}>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">{item}</a>
-                </li>
-              ))}
+              <li><Link href="/#features" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Features</Link></li>
+              <li><Link href="/dashboard" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Dashboard</Link></li>
+              <li><Link href="/#solution" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Hardware</Link></li>
+              <li><Link href="/#cases" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Case Studies</Link></li>
             </ul>
           </div>
 

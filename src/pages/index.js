@@ -4,7 +4,6 @@ import HeroSection from '@/components/HeroSection';
 import ProblemSection from '@/components/ProblemSection';
 import SolutionSection from '@/components/SolutionSection';
 import FeaturesSection from '@/components/FeaturesSection';
-import DashboardSection from '@/components/DashboardSection';
 import WhoSection from '@/components/WhoSection';
 import StatsSection from '@/components/StatsSection';
 import QuoteSection from '@/components/QuoteSection';
@@ -34,7 +33,6 @@ export default function Home() {
           <ProblemSection />
           <SolutionSection />
           <FeaturesSection />
-          <DashboardSection />
           <StatsSection />
           <WhoSection />
           <QuoteSection />

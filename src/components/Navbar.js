@@ -1,6 +1,6 @@
-'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,11 +13,11 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: 'Problem', href: '#problem' },
-    { label: 'Solution', href: '#solution' },
-    { label: 'Features', href: '#features' },
-    { label: 'Dashboard', href: '#dashboard' },
-    { label: 'Who', href: '#who' },
+    { label: 'Problem', href: '/#problem' },
+    { label: 'Solution', href: '/#solution' },
+    { label: 'Features', href: '/#features' },
+    { label: 'Dashboard', href: '/dashboard' },
+    { label: 'Who', href: '/#who' },
   ];
 
   return (
@@ -37,7 +37,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <div className="relative w-10 h-10 flex items-center justify-center">
             {/* Using the logo.png from the public directory */}
             <img src="/logo.png" alt="PureSight Logo" className="w-full h-full object-contain relative z-10" />
@@ -47,21 +47,21 @@ export default function Navbar() {
             style={{ fontFamily: 'Manrope, Inter, sans-serif', fontWeight: 800 }}>
             Pure<span className="gradient-text">Sight</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {links.map(l => (
-            <a key={l.label} href={l.href} className="nav-link animated-underline">
+            <Link key={l.label} href={l.href} className="nav-link animated-underline">
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
-          <a href="#contact" className="btn-ghost text-sm px-5 py-2.5">Log In</a>
-          <a href="#cta" className="btn-primary text-sm px-5 py-2.5">Request Demo</a>
+          <Link href="/login" className="btn-ghost text-sm px-5 py-2.5">Log In</Link>
+          <Link href="/#cta" className="btn-primary text-sm px-5 py-2.5">Request Demo</Link>
         </div>
 
         {/* Mobile Hamburger */}
@@ -92,13 +92,13 @@ export default function Navbar() {
             className="fixed top-16 left-4 right-4 z-40 glass rounded-2xl p-6 flex flex-col gap-4"
           >
             {links.map(l => (
-              <a key={l.label} href={l.href}
+              <Link key={l.label} href={l.href}
                 className="text-gray-700 font-medium py-2 border-b border-gray-100"
-                onClick={() => setMenuOpen(false)}>{l.label}</a>
+                onClick={() => setMenuOpen(false)}>{l.label}</Link>
             ))}
-            <a href="#cta" className="btn-primary text-center mt-2" onClick={() => setMenuOpen(false)}>
+            <Link href="/#cta" className="btn-primary text-center mt-2" onClick={() => setMenuOpen(false)}>
               Request Demo
-            </a>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
