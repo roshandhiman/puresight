@@ -38,8 +38,8 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="relative w-20 h-20 logo-container">
-            <img src="/logo.png" alt="PureSight Logo" className="w-16 h-16 object-contain relative z-10" />
+          <div className="relative w-16 h-16 logo-container" style={{ background: '#0EA5E9', padding: '4px' }}>
+            <img src="/logo.png" alt="PureSight Logo" className="w-full h-full object-contain relative z-10" />
           </div>
           <span className="font-display font-800 text-3xl tracking-tight text-gray-900"
             style={{ fontFamily: 'Manrope, Inter, sans-serif', fontWeight: 800 }}>

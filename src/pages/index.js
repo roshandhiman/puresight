@@ -9,7 +9,7 @@ import StatsSection from '@/components/StatsSection';
 import QuoteSection from '@/components/QuoteSection';
 import CtaSection from '@/components/CtaSection';
 import Footer from '@/components/Footer';
-import ParticleBackground from '@/components/ParticleBackground';
+
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="relative min-h-screen bg-transparent overflow-hidden selection:bg-blue-100 selection:text-blue-600">
+      <div className="relative min-h-screen bg-transparent selection:bg-blue-100 selection:text-blue-600">
         <Navbar />
         <main className="relative z-10">
           <HeroSection />
