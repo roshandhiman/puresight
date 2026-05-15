@@ -83,10 +83,10 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Main Headline with stagger per word */}
-      <div className="text-center mb-8 overflow-hidden">
+      <div className="text-center mb-8" style={{ paddingBottom: '0.15em' }}>
         <div
           className="font-display font-black leading-[0.92] tracking-tighter"
-          style={{ fontFamily: 'Manrope, Inter, sans-serif', fontWeight: 900, fontSize: 'clamp(3.5rem, 9vw, 8.5rem)', maxWidth: '1200px', color: '#0F172A' }}
+          style={{ fontFamily: 'Manrope, Inter, sans-serif', fontWeight: 900, fontSize: 'clamp(3.5rem, 9vw, 8.5rem)', maxWidth: '1200px', color: '#0F172A', paddingBottom: '0.1em' }}
         >
           <div className="flex flex-wrap justify-center gap-x-6 mb-2">
             {words1.map((word, i) => (
@@ -95,7 +95,8 @@ export default function HeroSection() {
                 initial={{ y: '110%', opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 + i * 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-block overflow-hidden"
+                className="inline-block"
+                style={{ paddingBottom: '0.1em' }}
               >
                 {word}
               </motion.span>
@@ -108,7 +109,8 @@ export default function HeroSection() {
                 initial={{ y: '110%', opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 + i * 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className={`inline-block gradient-text`}
+                className="inline-block gradient-text"
+                style={{ paddingBottom: '0.12em' }}
               >
                 {word}
               </motion.span>
