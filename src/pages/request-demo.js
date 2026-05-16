@@ -64,7 +64,7 @@ export default function RequestDemo() {
                       required
                       name="name"
                       type="text" 
-                      placeholder="John Doe"
+                      placeholder="Enter your full name"
                       className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4 text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-base"
                     />
                   </div>
@@ -74,7 +74,7 @@ export default function RequestDemo() {
                       required
                       name="email"
                       type="email" 
-                      placeholder="john@company.com"
+                      placeholder="email@organization.com"
                       className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4 text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-base"
                     />
                   </div>
