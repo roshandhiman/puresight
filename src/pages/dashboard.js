@@ -81,7 +81,28 @@ export default function DashboardPage() {
   const isSafe = data?.Quality === "GOOD";
 
   return (
-    <div className="min-h-screen bg-[#DBEAFE] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-600">
+    <div className="min-h-screen text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-600 relative overflow-x-hidden"
+      style={{ background: '#EFF6FF' }}
+    >
+      {/* Animated Gradient Mesh Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        {/* Base gradient */}
+        <div className="absolute inset-0" style={{
+          background: 'linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 35%, #EDE9FE 65%, #E0F2FE 100%)',
+        }} />
+        {/* Slow-moving aurora orb — top left */}
+        <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full opacity-60 animate-fluid-slow"
+          style={{ background: 'radial-gradient(circle, #BFDBFE 0%, transparent 70%)', filter: 'blur(80px)' }} />
+        {/* Slow-moving aurora orb — bottom right */}
+        <div className="absolute -bottom-[15%] -right-[10%] w-[60%] h-[60%] rounded-full opacity-50 animate-fluid-medium"
+          style={{ background: 'radial-gradient(circle, #C7D2FE 0%, transparent 70%)', filter: 'blur(80px)' }} />
+        {/* Accent orb — center */}
+        <div className="absolute top-[30%] left-[40%] w-[40%] h-[40%] rounded-full opacity-30"
+          style={{ background: 'radial-gradient(circle, #BAE6FD 0%, transparent 70%)', filter: 'blur(60px)', animation: 'fluid-slow 35s infinite ease-in-out reverse' }} />
+        {/* Dot grid overlay */}
+        <div className="absolute inset-0 opacity-[0.06]"
+          style={{ backgroundImage: 'radial-gradient(circle, #1d4ed8 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
+      </div>
       <Head>
         <title>Dashboard | PureSight Live Monitoring</title>
         <meta name="description" content="Live water quality and purifier health dashboard." />

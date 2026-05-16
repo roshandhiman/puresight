@@ -12,8 +12,8 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-8 group">
-              <div className="relative w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <img src="/logo.png" alt="PureSight Logo" className="w-6 h-6 object-contain" />
+              <div className="relative w-11 h-11 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 logo-container" style={{ background: '#0EA5E9', padding: '4px' }}>
+                <img src="/logo.png" alt="PureSight Logo" className="w-full h-full object-contain" />
               </div>
               <span className="font-black text-2xl text-white tracking-tight">PureSight</span>
             </Link>
