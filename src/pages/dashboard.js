@@ -332,7 +332,7 @@ export default function DashboardPage() {
       </main>
 
       <footer className="max-w-7xl mx-auto px-6 py-12 border-t border-slate-200 mt-12 flex flex-col md:flex-row items-center justify-between gap-6 text-slate-400 text-sm">
-        <div>&copy; 2024 PureSight Technologies. All rights reserved.</div>
+        <div>2026 PURESIGHT TECHNOLOGIES — ALL RIGHTS RESERVED</div>
         <div className="flex items-center gap-8">
           <a href="#" className="hover:text-blue-600 transition-colors">Documentation</a>
           <a href="#" className="hover:text-blue-600 transition-colors">Privacy Policy</a>

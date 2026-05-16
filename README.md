@@ -79,7 +79,7 @@ We discarded generic SaaS templates to create a bespoke, hardware-accelerated ex
 
 ## 🛡️ License
 
-© 2024 PureSight Technologies Pvt. Ltd. All rights reserved.
+2026 PURESIGHT TECHNOLOGIES — ALL RIGHTS RESERVED
 Proprietary software. Not for public distribution.
 
 <div align="center">
