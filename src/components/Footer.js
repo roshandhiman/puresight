@@ -22,13 +22,13 @@ export default function Footer() {
               Revolutionizing water safety with IoT intelligence. Making the invisible, visible.
             </p>
             <div className="flex flex-wrap items-center gap-6">
-              <a href="mailto:contact@puresight.com" className="text-gray-500 hover:text-white transition-all flex items-center gap-2 group/social">
+              <a href="mailto:shreshthtamcoretech@gmail.com" className="text-gray-500 hover:text-white transition-all flex items-center gap-2 group/social">
                 <div className="p-2 rounded-lg bg-white/5 group-hover/social:bg-blue-500/10 transition-colors">
                   <Mail size={18} className="group-hover/social:text-blue-500 transition-colors" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-widest hidden sm:inline">Gmail</span>
               </a>
-              <a href="tel:+910000000000" className="text-gray-500 hover:text-white transition-all flex items-center gap-2 group/social">
+              <a href="tel:+919056747180" className="text-gray-500 hover:text-white transition-all flex items-center gap-2 group/social">
                 <div className="p-2 rounded-lg bg-white/5 group-hover/social:bg-emerald-500/10 transition-colors">
                   <Phone size={18} className="group-hover/social:text-emerald-500 transition-colors" />
                 </div>

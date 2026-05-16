@@ -14,14 +14,26 @@ export default function RequestDemo() {
     e.preventDefault();
     setLoading(true);
     
-    // Formspree logic will go here
-    // const formData = new FormData(e.target);
-    // await fetch("YOUR_FORMSPREE_LINK", { method: 'POST', body: formData });
-    
-    setTimeout(() => {
+    const formData = new FormData(e.target);
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_FORMSPREE_URL, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Oops! There was a problem submitting your form. Please try again.");
+      }
+    } catch (error) {
+      alert("Oops! There was a problem submitting your form. Please try again.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 1500);
+    }
   };
 
   return (
