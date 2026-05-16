@@ -58,7 +58,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-5">
-          <Link href="/#cta" className="btn-primary text-base px-7 py-3 font-bold">Request Demo</Link>
+          <Link href="/request-demo" className="btn-primary text-base px-7 py-3 font-bold">Request Demo</Link>
         </div>
 
         {/* Mobile Hamburger */}

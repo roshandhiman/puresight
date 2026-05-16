@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -20,12 +21,19 @@ export default function Footer() {
             <p className="text-gray-400 text-lg leading-relaxed max-w-sm mb-8 font-medium">
               Revolutionizing water safety with IoT intelligence. Making the invisible, visible.
             </p>
-            <div className="flex items-center gap-5">
-              {['Twitter', 'LinkedIn', 'GitHub', 'Instagram'].map(social => (
-                <a key={social} href="#" className="text-gray-500 hover:text-blue-400 transition-colors text-sm font-bold uppercase tracking-widest">
-                  {social}
-                </a>
-              ))}
+            <div className="flex flex-wrap items-center gap-6">
+              <a href="mailto:contact@puresight.com" className="text-gray-500 hover:text-white transition-all flex items-center gap-2 group/social">
+                <div className="p-2 rounded-lg bg-white/5 group-hover/social:bg-blue-500/10 transition-colors">
+                  <Mail size={18} className="group-hover/social:text-blue-500 transition-colors" />
+                </div>
+                <span className="text-xs font-bold uppercase tracking-widest hidden sm:inline">Gmail</span>
+              </a>
+              <a href="tel:+910000000000" className="text-gray-500 hover:text-white transition-all flex items-center gap-2 group/social">
+                <div className="p-2 rounded-lg bg-white/5 group-hover/social:bg-emerald-500/10 transition-colors">
+                  <Phone size={18} className="group-hover/social:text-emerald-500 transition-colors" />
+                </div>
+                <span className="text-xs font-bold uppercase tracking-widest hidden sm:inline">Phone</span>
+              </a>
             </div>
           </div>
 
@@ -56,8 +64,8 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-gray-500 text-xs font-bold uppercase tracking-widest">
-            © 2024 PureSight Technologies Pvt. Ltd.
+          <div className="text-gray-500 text-[10px] font-black uppercase tracking-[0.3em]">
+            2026 PURESIGHT TECHNOLOGIES PVT. LTD. — ALL RIGHTS RESERVED
           </div>
           <div className="flex items-center gap-8 text-gray-500 text-xs font-bold uppercase tracking-widest">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

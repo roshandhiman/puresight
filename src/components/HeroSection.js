@@ -144,7 +144,7 @@ export default function HeroSection() {
             View Live Dashboard
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1.5" />
           </MagneticButton>
-          <MagneticButton href="#cta" className="btn-ghost px-10 py-4 text-base font-bold">
+          <MagneticButton href="/request-demo" className="btn-ghost px-10 py-4 text-base font-bold">
             Request Demo
           </MagneticButton>
         </motion.div>

@@ -1,5 +1,5 @@
-'use client';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function CtaSection() {
   return (
@@ -23,9 +23,12 @@ export default function CtaSection() {
             to guarantee drinking water safety for their people.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="bg-white text-blue-600 hover:bg-blue-50 transition-colors font-bold text-lg px-12 py-5 rounded-2xl shadow-xl shadow-blue-900/20">
+            <Link 
+              href="/request-demo"
+              className="bg-white text-blue-600 hover:bg-blue-50 transition-colors font-bold text-lg px-12 py-5 rounded-2xl shadow-xl shadow-blue-900/20"
+            >
               Request Demo Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>
