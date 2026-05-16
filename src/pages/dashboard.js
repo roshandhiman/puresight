@@ -81,7 +81,7 @@ export default function DashboardPage() {
   const isSafe = data?.Quality === "GOOD";
 
   return (
-    <div className="min-h-screen bg-[#F0F9FF] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-600">
+    <div className="min-h-screen bg-[#DBEAFE] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-600">
       <Head>
         <title>Dashboard | PureSight Live Monitoring</title>
         <meta name="description" content="Live water quality and purifier health dashboard." />
