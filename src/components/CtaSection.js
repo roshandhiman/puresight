@@ -23,11 +23,8 @@ export default function CtaSection() {
             to guarantee drinking water safety for their people.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="bg-white text-blue-600 hover:bg-blue-50 transition-colors font-bold text-lg px-10 py-4 rounded-2xl shadow-xl shadow-blue-900/20">
-              Get Started Now
-            </button>
-            <button className="bg-blue-700/50 text-white border border-blue-400/30 hover:bg-blue-700/70 transition-colors font-bold text-lg px-10 py-4 rounded-2xl">
-              Contact Sales
+            <button className="bg-white text-blue-600 hover:bg-blue-50 transition-colors font-bold text-lg px-12 py-5 rounded-2xl shadow-xl shadow-blue-900/20">
+              Request Demo Now
             </button>
           </div>
         </div>

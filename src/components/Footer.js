@@ -51,21 +51,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div className="bg-white/5 rounded-[32px] p-8 border border-white/10">
-            <h4 className="text-white font-black text-sm mb-4">Stay Informed</h4>
-            <p className="text-gray-400 text-xs mb-6 font-medium">Get the latest on water safety tech.</p>
-            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Email address" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-colors"
-              />
-              <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm py-3 rounded-xl transition-all shadow-lg shadow-blue-600/20 active:scale-95">
-                Join Now
-              </button>
-            </form>
-          </div>
+
         </div>
 
         {/* Bottom Bar */}
