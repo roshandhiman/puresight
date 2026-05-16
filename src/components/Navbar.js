@@ -48,18 +48,17 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {links.map(l => (
-            <Link key={l.label} href={l.href} className="nav-link animated-underline">
+            <Link key={l.label} href={l.href} className="nav-link animated-underline text-base font-bold tracking-tight">
               {l.label}
             </Link>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <Link href="/login" className="btn-ghost text-sm px-5 py-2.5">Log In</Link>
-          <Link href="/#cta" className="btn-primary text-sm px-5 py-2.5">Request Demo</Link>
+        <div className="hidden md:flex items-center gap-5">
+          <Link href="/#cta" className="btn-primary text-base px-7 py-3 font-bold">Request Demo</Link>
         </div>
 
         {/* Mobile Hamburger */}
