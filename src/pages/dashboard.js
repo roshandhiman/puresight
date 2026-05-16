@@ -81,7 +81,7 @@ export default function DashboardPage() {
   const isSafe = data?.Quality === "GOOD";
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-600">
+    <div className="min-h-screen bg-[#F0F9FF] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-600">
       <Head>
         <title>Dashboard | PureSight Live Monitoring</title>
         <meta name="description" content="Live water quality and purifier health dashboard." />
@@ -95,8 +95,8 @@ export default function DashboardPage() {
               <ArrowLeft className="w-5 h-5 text-slate-500 group-hover:text-blue-600" />
             </Link>
             <div className="flex items-center gap-3">
-              <div className="relative w-16 h-16 logo-container">
-                <img src="/logo.png" alt="PureSight Logo" className="w-14 h-14 object-contain relative z-10" />
+              <div className="relative w-16 h-16 logo-container" style={{ background: '#0EA5E9', padding: '4px' }}>
+                <img src="/logo.png" alt="PureSight Logo" className="w-full h-full object-contain relative z-10" />
               </div>
               <h1 className="text-3xl font-bold tracking-tight">Pure<span className="text-blue-600">Sight</span></h1>
             </div>
