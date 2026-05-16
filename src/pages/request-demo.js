@@ -79,12 +79,11 @@ export default function RequestDemo() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2 ml-1">Organization</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2 ml-1">Phone Number (Optional)</label>
                     <input 
-                      required
-                      name="organization"
-                      type="text" 
-                      placeholder="University or Company Name"
+                      name="phone"
+                      type="tel" 
+                      placeholder="+91 00000-00000"
                       className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4 text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-base"
                     />
                   </div>
