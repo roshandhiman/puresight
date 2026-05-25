@@ -319,11 +319,11 @@ export default function DashboardPage() {
               <div className="space-y-3 relative z-10">
                 <div className="flex items-center justify-between border-b border-white/5 pb-3">
                   <span className="text-white/30 text-[9px] font-black uppercase tracking-widest">Device</span>
-                  <span className="font-mono text-xs font-bold">PS-ALPH-01</span>
+                  <span className="font-mono text-xs font-bold">CHITKARA(Arts Block)</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-white/30 text-[9px] font-black uppercase tracking-widest">Score</span>
-                  <span className="text-xs font-black text-blue-500 tracking-tight">99.8% Optimal</span>
+                  <span className="text-white/30 text-[9px] font-black uppercase tracking-widest">Uptime</span>
+                  <span className="text-xs font-black text-blue-500 tracking-tight">99.8%</span>
                 </div>
               </div>
             </div>
